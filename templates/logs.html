@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Registros{% endblock %}
+{% block header %}Historial de Impresiones{% endblock %}
+
+{% block content %}
+<div class="glass-panel p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="text-secondary mb-0">Últimos 100 Trabajos</h5>
+        <div>
+            <a href="/api/v1/export/csv" class="btn btn-outline-primary btn-sm"><i class="bi bi-download me-1"></i> Exportar CSV</a>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table table-glass table-hover">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Usuario</th>
+                    <th>Equipo</th>
+                    <th>Impresora</th>
+                    <th>Documento</th>
+                    <th>Páginas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                    <td>{{ job.fecha_impresion.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ job.usuario.username }}</td>
+                    <td>{{ job.equipo.hostname }}</td>
+                    <td>
+                        <span class="badge bg-light text-dark border"><i class="bi {% if job.impresora.tipo_conexion == 'Red' %}bi-wifi{% else %}bi-usb{% endif %} me-1"></i>{{ job.impresora.nombre_impresora }}</span>
+                    </td>
+                    <td><small class="text-muted">{{ job.nombre_documento }}</small></td>
+                    <td><strong>{{ job.total_paginas }}</strong></td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" class="text-center py-4 text-muted">No hay trabajos de impresión registrados aún.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

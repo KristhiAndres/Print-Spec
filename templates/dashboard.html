@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block header %}Panel General{% endblock %}
+
+{% block content %}
+<div class="row g-4 mb-4">
+    <!-- Stat Card 1 -->
+    <div class="col-md-4">
+        <div class="glass-panel stat-card">
+            <div class="stat-title">Páginas Impresas</div>
+            <div class="stat-value text-primary">{{ total_pages }}</div>
+        </div>
+    </div>
+    <!-- Stat Card 2 -->
+    <div class="col-md-4">
+        <div class="glass-panel stat-card">
+            <div class="stat-title">Trabajos Registrados</div>
+            <div class="stat-value text-success">{{ total_jobs }}</div>
+        </div>
+    </div>
+    <!-- Stat Card 3 -->
+    <div class="col-md-4">
+        <div class="glass-panel p-4 text-center h-100 d-flex flex-column justify-content-center">
+            <h6 class="text-secondary text-uppercase mb-2">Estado Sistema</h6>
+            <h2 class="display-6 fw-bold mb-0 text-success">
+                {% if db_status == 'Activo' %}
+                    <i class="bi bi-check-circle-fill"></i> Activo
+                {% else %}
+                    <i class="bi bi-x-circle-fill text-danger"></i> {{ db_status }}
+                {% endif %}
+            </h2>
+        </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="glass-panel p-4 h-100">
+            <h5 class="mb-4 text-secondary">Tendencia de Impresión (Simulada)</h5>
+            <div style="position: relative; height: 300px; width: 100%;">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="glass-panel p-4 h-100">
+            <h5 class="mb-4 text-secondary">Uso por Impresora</h5>
+            <div style="position: relative; height: 300px; width: 100%;">
+                <canvas id="printerChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,153 @@
+:root {
+    --bg-color: #f4f7fb;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+    
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    
+    --brand-primary: #3498db; /* You can adjust to match the PNG colors */
+    --brand-secondary: #2ecc71;
+    --brand-accent: #e74c3c;
+    
+    --transition-speed: 0.3s;
+}
+
+body.light-theme {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 16px;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.glass-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.08);
+}
+
+/* Sidebar */
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 260px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border-right: 1px solid var(--glass-border);
+    transition: margin var(--transition-speed) ease-out;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.03);
+}
+
+.sidebar-heading {
+    padding: 1.5rem;
+    font-weight: 700;
+}
+
+.list-group-item {
+    border: none;
+    padding: 1rem 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all var(--transition-speed);
+}
+
+.list-group-item:hover, .list-group-item.active {
+    background-color: rgba(52, 152, 219, 0.1) !important;
+    color: var(--brand-primary);
+    border-radius: 0 25px 25px 0;
+    margin-right: 15px;
+}
+
+.list-group-item.active {
+    border-left: 4px solid var(--brand-primary);
+}
+
+/* Navbar */
+.glass-navbar {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Page Content */
+.content-area {
+    min-height: calc(100vh - 75px);
+}
+
+/* Stats Cards */
+.stat-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-title {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Tables */
+.table-glass {
+    background: transparent;
+}
+.table-glass th {
+    background: rgba(255,255,255,0.4);
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--glass-border);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+.table-glass td {
+    background: transparent;
+    border-bottom: 1px solid var(--glass-border);
+    vertical-align: middle;
+}
+
+/* Forms */
+.form-control, .form-select {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+    border-color: var(--brand-primary);
+}
+
+/* Toggling Sidebar */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -260px;
+}
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: -260px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+    }
+}
